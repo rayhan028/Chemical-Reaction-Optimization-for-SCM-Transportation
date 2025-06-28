@@ -1,0 +1,54 @@
+## Ignore Visual Studio temporary files, build results, and
+## user-specific files
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+Generated\ Files/
+
+# Backup & cache
+*.bak
+*.cache
+*.log
+
+# Visual Studio Code workspace
+.vscode/
+
+# Rider IDE
+.idea/
+
+# NuGet
+*.nupkg
+packages/
+*.snupkg
+
+# DotCover
+.idea.DotSettings
+
+# Publish output
+publish/
+
+# ASP.NET temporary files
+**/App_Data/Temp/
+
+# VS for Mac
+*.pidb
+*.userprefs
+
+# Others
+_ReSharper*/
+*.DotSettings.user
+
+# Logs
+*.log
+
+# JetBrains Rider
+.idea/
