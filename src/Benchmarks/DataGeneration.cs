@@ -15,7 +15,7 @@ namespace SupplyChainManagementUsingCRO
             //for cat_1 (selfsupport vehicle) 
             //for X
             double[,] cost;
-            sw = new StreamWriter(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/XcostInput.txt");
+            sw = new StreamWriter(@"path_to_input.txt");
             cost = new double[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_1()];
             try
             {
@@ -46,7 +46,7 @@ namespace SupplyChainManagementUsingCRO
             sw.Close();
             ////for Y
             cost = new double[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_1()];
-            sw = new StreamWriter(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/YcostInput.txt");
+            sw = new StreamWriter(@"path_to_input.txt");
             try
             {
               
@@ -76,7 +76,7 @@ namespace SupplyChainManagementUsingCRO
             sw.Close();
             ////for Z
             cost = new double[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_1()];
-            sw = new StreamWriter(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/ZcostInput.txt");
+            sw = new StreamWriter(@"path_to_input.txt");
             try
             {
                 
@@ -108,7 +108,7 @@ namespace SupplyChainManagementUsingCRO
             //for cat_2b
             //for class 1
             cost = new double[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_2b()];
-            sw = new StreamWriter(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_I(b).txt");
+            sw = new StreamWriter(@"path_to_input.txt");
             try
             {
                 
@@ -139,7 +139,7 @@ namespace SupplyChainManagementUsingCRO
            
             //for class 2
             cost = new double[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_2b()];
-            sw = new StreamWriter(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_II(b).txt");
+            sw = new StreamWriter(@"path_to_input.txt");
             try
             {
                 
@@ -169,7 +169,7 @@ namespace SupplyChainManagementUsingCRO
             sw.Close();
             ////for class 2
             cost = new double[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_2b()];
-            sw = new StreamWriter(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_III(b).txt");
+            sw = new StreamWriter(@"path_to_input.txt");
             try
             {
                
@@ -201,7 +201,7 @@ namespace SupplyChainManagementUsingCRO
             //for cat_2a
             //for class 1
             cost = new double[1, nodeInfo.getNoOfCat_2a()];
-            sw = new StreamWriter(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_I(a).txt");
+            sw = new StreamWriter(@"path_to_input.txt");
             try
             {
                 
@@ -233,7 +233,7 @@ namespace SupplyChainManagementUsingCRO
             //for cat_2a
             //for class 2
             cost = new double[1, nodeInfo.getNoOfCat_2a()];
-            sw = new StreamWriter(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_II(a).txt");
+            sw = new StreamWriter(@"path_to_input.txt");
             try
             {
                
@@ -265,7 +265,7 @@ namespace SupplyChainManagementUsingCRO
             //for cat_2a
             //for class 3
             cost = new double[1, nodeInfo.getNoOfCat_2a()];
-            sw = new StreamWriter(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_III(a).txt");
+            sw = new StreamWriter(@"path_to_input.txt");
             try
             {
                
@@ -297,7 +297,7 @@ namespace SupplyChainManagementUsingCRO
 
             //demand
             double[,] demand = new double[1, (nodeInfo.getNoOfCat_1()+nodeInfo.getNoOfCat_2a()+nodeInfo.getNoOfCat_2b())];
-            sw = new StreamWriter(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/Demand.txt");
+            sw = new StreamWriter(@"path_to_input.txt");
             try
             {
 
