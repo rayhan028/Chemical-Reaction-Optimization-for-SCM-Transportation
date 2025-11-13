@@ -1,0 +1,640 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SupplyChainManagementUsingCRO
+{
+    public class GetInput
+    {
+
+        NodeInformation nodeInfo = new NodeInformation();
+        public float[,] cost_SelfSupport_X;
+        public float[,] cost_SelfSupport_Y;
+        public float[,] cost_SelfSupport_Z;
+
+        public float[] demand;
+        public float[] capacity;
+        public float[] startupCost;
+
+        public float[,] cost_TPL_1b;
+        public float[,] cost_TPL_2b;
+        public float[,] cost_TPL_3b;
+
+        public float[] cost_TPL_1a;
+        public float[] cost_TPL_2a;
+        public float[] cost_TPL_3a;
+        Random random = new Random();
+        public GetInput()
+        {
+            cost_SelfSupport_X = new float[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_1()];
+            cost_SelfSupport_Y = new float[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_1()];
+            cost_SelfSupport_Z = new float[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_1()];
+            demand = new float[nodeInfo.getNoOfCat_1() + nodeInfo.getNoOfCat_2a() + nodeInfo.getNoOfCat_2b()];
+            capacity = new float[3];
+            startupCost = new float[3];
+            cost_TPL_1b = new float[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_2b()];
+            cost_TPL_2b = new float[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_2b()];
+            cost_TPL_3b = new float[nodeInfo.getNoOfCat_1(), nodeInfo.getNoOfCat_2b()];
+            cost_TPL_1a = new float[nodeInfo.getNoOfCat_2a()];
+            cost_TPL_2a = new float[nodeInfo.getNoOfCat_2a()];
+            cost_TPL_3a = new float[nodeInfo.getNoOfCat_2a()];
+        }
+
+        public void getDemand()
+        {
+            try
+            {
+                for (int n = 0; n < (nodeInfo.getNoOfCat_1() + nodeInfo.getNoOfCat_2a() + nodeInfo.getNoOfCat_2b()); n++)
+                {
+                    demand[n] = random.Next(1, 10);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //try
+            //{
+
+            //    String input = File.ReadAllText(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/Demand.txt");
+            //    int i = 0;
+            //    foreach (var row in input.Split(' '))
+            //    {
+            //        demand[i] = float.Parse(row.Trim());
+            //        i++;
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+
+        }
+        public void getCapacity()
+        {
+
+            try
+            {
+
+                String input = File.ReadAllText(@"E:\Input_CRO\Capacity_SelfSupport.txt");
+                int i = 0;
+                foreach (var row in input.Split(' '))
+                {
+                    capacity[i] = float.Parse(row.Trim());
+                    i++;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        public void getStartupCost()
+        {
+
+            try
+            {
+
+                String input = File.ReadAllText(@"E:\Input_CRO\StartupCost_SelfSupport.txt");
+                int i = 0;
+                foreach (var row in input.Split(' '))
+                {
+                    startupCost[i] = float.Parse(row.Trim());
+                    i++;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+
+        public void getcost_SelfSupport_X()
+        {
+            try
+            {
+
+                for (int m = 0; m < nodeInfo.getNoOfCat_1(); m++)
+                {
+                    for (int n = 0; n < nodeInfo.getNoOfCat_1(); n++)
+                    {
+                        cost_SelfSupport_X[m, n] = random.Next(1000, 2500)* (.123f);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //try
+            //{
+
+
+            //String input = File.ReadAllText(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/XcostInput.txt");
+            //int i = 0, j = 0;
+            //foreach (var row in input.Split('\n'))
+            //{
+            //    j = 0;
+            //    foreach (var col in row.Trim().Split(' '))
+            //    {
+            //        cost_SelfSupport_X[i, j] = float.Parse(col.Trim());
+            //        j++;
+            //    }
+            //    i++;
+
+            //}
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+
+        }
+
+        public void getcost_SelfSupport_Y()
+        {
+            try
+            {
+
+                for (int m = 0; m < nodeInfo.getNoOfCat_1(); m++)
+                {
+                    for (int n = 0; n < nodeInfo.getNoOfCat_1(); n++)
+                    {
+                        cost_SelfSupport_Y[m, n] = random.Next(900, 2500)* (.117f);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //try
+            //{
+            //             String input = File.ReadAllText(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/YcostInput.txt");
+            //	int i = 0, j = 0;
+            //	foreach (var row in input.Split('\n'))
+            //	{
+            //		j = 0;
+            //		foreach (var col in row.Trim().Split(' '))
+            //		{
+            //			cost_SelfSupport_Y[i, j] = float.Parse(col.Trim());
+            //			j++;
+            //		}
+            //		i++;
+
+            //	}
+            //}
+            //catch (Exception ex)
+            //{
+            //	Console.WriteLine(ex.Message);
+            //}
+
+        }
+
+
+
+        public void getcost_SelfSupport_Z()
+        {
+            try
+            {
+
+                for (int m = 0; m < nodeInfo.getNoOfCat_1(); m++)
+                {
+                    for (int n = 0; n < nodeInfo.getNoOfCat_1(); n++)
+                    {
+                        cost_SelfSupport_Z[m, n] = random.Next(1000, 3000)* (.113f);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //try
+            //{
+            //             String input = File.ReadAllText(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/ZcostInput.txt");
+            //	int i = 0, j = 0;
+            //	foreach (var row in input.Split('\n'))
+            //	{
+            //		j = 0;
+            //		foreach (var col in row.Trim().Split(' '))
+            //		{
+            //			cost_SelfSupport_Z[i, j] = float.Parse(col.Trim());
+            //			j++;
+            //		}
+            //		i++;
+
+            //	}
+            //}
+            //catch (Exception ex)
+            //{
+            //	Console.WriteLine(ex.Message);
+            //}
+
+        }
+
+
+        public void getcost_TPL_1b()
+        {
+            try
+            {
+
+                for (int m = 0; m < nodeInfo.getNoOfCat_1(); m++)
+                {
+                    for (int n = 0; n < nodeInfo.getNoOfCat_2b(); n++)
+                    {
+                        cost_TPL_1b[m, n] = random.Next(1200, 3000)* (.1235f);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //try
+            //{
+            //             String input = File.ReadAllText(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_I(b).txt");
+            //	int i = 0, j = 0;
+            //	foreach (var row in input.Split('\n'))
+            //	{
+            //		j = 0;
+            //		foreach (var col in row.Trim().Split(' '))
+            //		{
+            //			cost_TPL_1b[i, j] = float.Parse(col.Trim());
+            //			j++;
+            //		}
+            //		i++;
+
+            //	}
+            //}
+            //catch (Exception ex)
+            //{
+            //	Console.WriteLine(ex.Message);
+            //}
+
+        }
+
+        public void getcost_TPL_2b()
+        {
+            try
+            {
+
+                for (int m = 0; m < nodeInfo.getNoOfCat_1(); m++)
+                {
+                    for (int n = 0; n < nodeInfo.getNoOfCat_2b(); n++)
+                    {
+                        cost_TPL_2b[m, n] = random.Next(1200, 3000)* (.1113f);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //try
+            //{
+            //             String input = File.ReadAllText(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_II(b).txt");
+            //	int i = 0, j = 0;
+            //	foreach (var row in input.Split('\n'))
+            //	{
+            //		j = 0;
+            //		foreach (var col in row.Trim().Split(' '))
+            //		{
+            //			cost_TPL_2b[i, j] = float.Parse(col.Trim());
+            //			j++;
+            //		}
+            //		i++;
+
+            //	}
+            //}
+            //catch (Exception ex)
+            //{
+            //	Console.WriteLine(ex.Message);
+            //}
+
+        }
+
+
+        public void getcost_TPL_3b()
+        {
+            try
+            {
+
+                for (int m = 0; m < nodeInfo.getNoOfCat_1(); m++)
+                {
+                    for (int n = 0; n < nodeInfo.getNoOfCat_2b(); n++)
+                    {
+                        cost_TPL_3b[m, n] = random.Next(1200, 3000)* (.223f);
+                    }
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //try
+            //{
+            //             String input = File.ReadAllText(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_III(b).txt");
+            //	int i = 0, j = 0;
+            //	foreach (var row in input.Split('\n'))
+            //	{
+            //		j = 0;
+            //		foreach (var col in row.Trim().Split(' '))
+            //		{
+            //			cost_TPL_3b[i, j] = float.Parse(col.Trim());
+            //			j++;
+            //		}
+            //		i++;
+
+            //	}
+            //}
+            //catch (Exception ex)
+            //{
+            //	Console.WriteLine(ex.Message);
+            //}
+
+        }
+
+
+        public void getcost_TPL_1a()
+        {
+            try
+            {
+                for (int n = 0; n < nodeInfo.getNoOfCat_2a(); n++)
+                {
+                    cost_TPL_1a[n] = random.Next(2000, 3500)* (.123f);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //try
+            //{
+
+            //             String input = File.ReadAllText(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_I(a).txt");
+            //	int i = 0;
+            //	foreach (var row in input.Split(' '))
+            //	{
+            //		cost_TPL_1a[i] = float.Parse(row.Trim());
+            //		i++;
+            //	}
+            //}
+            //catch (Exception ex)
+            //{
+            //	Console.WriteLine(ex.Message);
+            //}
+
+        }
+
+        public void getcost_TPL_2a()
+        {
+            try
+            {
+                for (int n = 0; n < nodeInfo.getNoOfCat_2a(); n++)
+                {
+                    cost_TPL_2a[n] = random.Next(2000, 3500)*(.1123f);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //try
+            //{
+
+            //             String input = File.ReadAllText(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_II(a).txt");
+            //	int i = 0;
+            //	foreach (var row in input.Split(' '))
+            //	{
+            //		cost_TPL_2a[i] = float.Parse(row.Trim());
+            //		i++;
+            //	}
+            //}
+            //catch (Exception ex)
+            //{
+            //	Console.WriteLine(ex.Message);
+            //}
+
+        }
+
+
+        public void getcost_TPL_3a()
+        {
+            try
+            {
+                for (int n = 0; n < nodeInfo.getNoOfCat_2a(); n++)
+                {
+                    cost_TPL_3a[n] = random.Next(2000, 3500)* (.122f);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //try
+            //{
+
+            //             String input = File.ReadAllText(@"/Users/riazmahmud/Documents/Thesis/Input_SupplyChainManagementUsingCRO_v.4.0/TPL_III(a).txt");
+            //	int i = 0;
+            //	foreach (var row in input.Split(' '))
+            //	{
+            //		cost_TPL_3a[i] = float.Parse(row.Trim());
+            //		i++;
+            //	}
+            //}
+            //catch (Exception ex)
+            //{
+            //	Console.WriteLine(ex.Message);
+            //}
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //public  float[,] distance = new float[16, 16];
+        ////float[,] distance2 = new float[6, 6];
+        //int noOfCat_1_Node = 0;
+
+        //public float[,] getDistance()
+        //{
+        //    try
+        //    {
+        //        String input = File.ReadAllText(@"C:\Users\Riaz Mahmud\Documents\Visual Studio 2013\Projects\SupplyChainManagementUsingCRO\distanceInput.txt");
+        //        int i = 0, j = 0;
+        //        foreach (var row in input.Split('\n'))
+        //        {
+        //            j = 0;
+        //            foreach (var col in row.Trim().Split(' '))
+        //            {
+        //                distance[i, j] = float.Parse(col.Trim());
+        //                j++;
+        //            }
+        //            i++;
+
+        //        }
+        //        noOfCat_1_Node = i;
+        //        return distance;
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        Console.WriteLine(ex.Message);
+        //        return null;
+        //    }
+
+        //}
+        //public float[,] getDistance2()
+        //{
+        //    try
+        //    {
+        //        String input = File.ReadAllText(@"C:\Users\Riaz Mahmud\Documents\Visual Studio 2013\Projects\SupplyChainManagementUsingCRO\distanceInput2.txt");
+        //        int i = 0, j = 0;
+        //        foreach (var row in input.Split('\n'))
+        //        {
+        //            j = 0;
+        //            foreach (var col in row.Trim().Split(' '))
+        //            {
+        //                distance2[i, j] = float.Parse(col.Trim());
+        //                j++;
+        //            }
+        //            i++;
+
+        //        }
+        //        noOfCat_1_Node = i;
+        //        return distance2;
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        Console.WriteLine(ex.Message);
+        //        return null;
+        //    }
+
+        //}
+
+        //public int getNoOfCat_1_Node()
+        //{
+        //    return noOfCat_1_Node;
+        //}
+
+        //public float[,] getCost_X()
+        //{
+        //    try
+        //    {
+        //        String input = File.ReadAllText(@"C:\Users\Riaz Mahmud\Documents\Visual Studio 2013\Projects\SupplyChainManagementUsingCRO\XcostInput.txt");
+        //        int i = 0, j = 0;
+        //        foreach (var row in input.Split('\n'))
+        //        {
+        //            j = 0;
+        //            foreach (var col in row.Trim().Split(' '))
+        //            {
+        //                cost_X[i, j] = float.Parse(col.Trim());
+        //                j++;
+        //            }
+        //            i++;
+
+        //        }
+        //        return cost_X;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //        return null;
+        //    }
+
+        //}
+
+
+        //public float[,] getCost_cat1()
+        //{
+        //    try
+        //    {
+        //        String input = File.ReadAllText(@"C:\Users\Riaz Mahmud\Documents\Visual Studio 2013\Projects\SupplyChainManagementUsingCRO\cat_1CostInput.txt");
+        //        int i = 0, j = 0;
+        //        foreach (var row in input.Split('\n'))
+        //        {
+        //            j = 0;
+        //            foreach (var col in row.Trim().Split(' '))
+        //            {
+        //                cost_cat1[i, j] = float.Parse(col.Trim());
+        //                j++;
+        //            }
+        //            i++;
+
+        //        }
+        //        return cost_cat1;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //        return null;
+        //    }
+
+        //}
+
+        //public float[,] getCost_Y()
+        //{
+        //    try
+        //    {
+        //        String input = File.ReadAllText(@"C:\Users\Riaz Mahmud\Documents\Visual Studio 2013\Projects\SupplyChainManagementUsingCRO\YcostInput.txt");
+        //        int i = 0, j = 0;
+        //        foreach (var row in input.Split('\n'))
+        //        {
+        //            j = 0;
+        //            foreach (var col in row.Trim().Split(' '))
+        //            {
+        //                cost_Y[i, j] = float.Parse(col.Trim());
+        //                j++;
+        //            }
+        //            i++;
+
+        //        }
+        //        return cost_Y;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //        return null;
+        //    }
+
+        //}
+    }
+}
