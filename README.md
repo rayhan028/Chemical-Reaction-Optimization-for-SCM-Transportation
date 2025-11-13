@@ -3,9 +3,9 @@
 ## Overview
 
 This repository provides the source code implementation of the research paper titled **Transportation Scheduling Optimization by a Collaborative Strategy in Supply Chain Management with Third Party Logistics using Chemical Reaction Optimization**.  
-The project proposes a meta-heuristic optimization algorithm named **CRO-SCM (Chemical Reaction Optimization for Supply Chain Management)**, designed to minimize collaborative transportation costs within a supply chain network that integrates third party logistics (TPL) enterprises.
+The research work proposes a meta-heuristic optimization algorithm named **CRO-SCM (Chemical Reaction Optimization for Supply Chain Management)**, designed to minimize collaborative transportation costs within a supply chain network that integrates third party logistics (TPL) enterprises.
 
-The CRO-SCM algorithm applies the principles of Chemical Reaction Optimization (CRO) to address the NP-hard problem of transportation scheduling in supply chain management. It determines optimal routing and vehicle scheduling among manufacturing enterprises, self-support logistics vehicles, and TPL enterprises to minimize total transportation cost and computation time.
+The CRO-SCM algorithm applies the principles of Chemical Reaction Optimization (CRO) to address the NP-hard problem of transportation scheduling in supply chain management. It determines optimal routing and vehicle scheduling among manufacturing enterprises, self-support logistics vehicles, and TPL enterprises to minimize total transportation cost and computation time using local and global solution space.
 
 ## Key Features
 
@@ -41,16 +41,23 @@ The CRO-SCM algorithm models the behavior of molecules in a chemical reaction sy
 
 ## Experimental Evaluation
 
-The CRO-SCM algorithm was tested using benchmark and randomly generated datasets involving multiple transportation nodes and vehicle types.  
-Simulation results show that CRO-SCM achieves lower total transportation costs and shorter execution times compared to traditional ACO, modified ACO-NSO, Genetic Algorithm (GA), and IBM CPLEX solver.
+The CRO-SCM algorithm was extensively evaluated using both standard benchmark datasets and randomly generated datasets with different scales of transportation nodes and vehicle types.
 
-The experiments confirmed that CRO-SCM provides more efficient, practical, and stable results for collaborative supply chain transportation scheduling problems.
+In the primary experiments, a standard dataset with 20 total transportation nodes was used, following the benchmark proposed by Xu et al. This included 10 category-1 nodes, 6 category-2 nodes-b, and 4 category-2 nodes-a. Three types of self-support logistics vehicles and three types of TPL enterprise vehicles were considered. Simulation results showed that CRO-SCM achieved lower total transportation costs and shorter computation times compared to the traditional Ant Colony Optimization (ACO), modified ACO-NSO, Genetic Algorithm (GA), and IBM CPLEX optimizer.
+
+To further analyze scalability and robustness, the authors extended the experiments to 30-node and 40-node problem instances. In the 30-node dataset (15 category-1, 10 category-2b, and 5 category-2a), CRO-SCM maintained superior performance, producing lower average transportation costs and significantly faster convergence compared to modified ACO-NSO. In the 40-node dataset (20 category-1, 10 category-2b, and 10 category-2a), CRO-SCM again outperformed other algorithms, demonstrating stable optimization behavior and reduced standard deviation in results.
+
+Additionally, six large-scale problem sets were constructed to evaluate the robustness of CRO-SCM under different node distributions and problem complexities. These sets—CL1, CL2, CR1, CR2, RC1, and RC2—varied in the spatial distribution of transportation nodes (clustered, random, and semi-clustered) and in total problem size, with some including up to 70–80 category-1 nodes. Across all these scenarios, CRO-SCM consistently achieved lower transportation costs and required less execution time compared to the modified ACO-NSO and other baseline algorithms.
+
+A key enhancement in CRO-SCM, the repair operator, was shown to significantly improve the final results by re-routing underutilized self-support vehicles to maximize vehicle startup cost utilization. Comparative runs with and without the repair operator demonstrated notable reductions in total transportation cost and runtime.
+
+Overall, the experiments confirm that CRO-SCM provides an efficient, scalable, and stable solution for collaborative transportation scheduling in supply chain networks. It consistently outperforms ACO-based and GA-based methods in both cost optimization and computational efficiency across all dataset scales.
 
 ## Software and Implementation Details
 
 - Language: C Sharp (C#)
 - Platform: Microsoft Visual Studio Community Edition
-- Operating System: macOS or Windows
+- Operating System: Windows
 - Algorithm Type: Meta-heuristic Optimization
 - Problem Type: NP-hard Combinatorial Optimization
 
